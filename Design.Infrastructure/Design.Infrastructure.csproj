@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Design.Infrastructure</AssemblyName>
+    <PackageId>Design.Infrastructure</PackageId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Design.Core/Design.Core.csproj" />
+  </ItemGroup>
 
 </Project>
