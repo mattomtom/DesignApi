@@ -10,4 +10,8 @@
     <ProjectReference Include="../Design.Core/Design.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+  </ItemGroup>
+
 </Project>

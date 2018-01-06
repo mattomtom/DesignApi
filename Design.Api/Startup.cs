@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Design.Core.Repositories;
+using Design.Infrastructure.Mappers;
 using Design.Infrastructure.Repositories;
 using Design.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
@@ -28,6 +29,7 @@ namespace Design.Api
         {
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, InMemoryUserRepository>();
+            services.AddSingleton(AutoMapperConfig.Initialize());
             services.AddMvc();
         }
 

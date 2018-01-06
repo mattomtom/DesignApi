@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Design.Infrastructure.Commands.Users;
 using Design.Infrastructure.DTO;
 using Design.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,13 @@ namespace Design.Api.Controllers
 
         // GET 
         [HttpGet("{email}")]
-        public UserDto Get(string email)
-            => _userService.Get(email);
+        public async Task<UserDto> Get(string email)
+            => await _userService.GetAsync(email);
+
+        // POST
+        [HttpPost("")]
+        public async Task Post([FromBody]CreateUser request) 
+            => await _userService.RegisterAsync(request.Email, request.Username, request.Password);
+        
     }
 }
