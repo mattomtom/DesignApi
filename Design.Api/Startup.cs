@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Design.Core.Repositories;
+using Design.Infrastructure.IoC.Modules;
 using Design.Infrastructure.Mappers;
 using Design.Infrastructure.Repositories;
 using Design.Infrastructure.Services;
@@ -24,17 +27,26 @@ namespace Design.Api
 
         public IConfiguration Configuration { get; }
 
+        public IContainer ApplicationContainer { get; private set; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, InMemoryUserRepository>();
             services.AddSingleton(AutoMapperConfig.Initialize());
             services.AddMvc();
+
+            var builder = new ContainerBuilder();
+            builder.Populate(services);
+            builder.RegisterModule<CommandModule>();
+            ApplicationContainer = builder.Build();
+
+            return new AutofacServiceProvider(ApplicationContainer);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime applicationLifetime)
         {
             if (env.IsDevelopment())
             {
@@ -42,6 +54,7 @@ namespace Design.Api
             }
 
             app.UseMvc();
+            applicationLifetime.ApplicationStopped.Register(() => ApplicationContainer.Dispose());
         }
-    }
+    }    
 }

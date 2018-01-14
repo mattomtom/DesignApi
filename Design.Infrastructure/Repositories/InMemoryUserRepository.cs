@@ -11,9 +11,9 @@ namespace Design.Infrastructure.Repositories
     {
         private static ISet<User> _users = new HashSet<User>
         {
-            new User("user1@email.com","user1","secret1","salt1"),
-            new User("user2@email.com","user2","secret2","salt2"),
-            new User("user3@email.com","user3","secret3","salt3")
+            new User("user1@email.com","user1","secret1","user","salt1"),
+            new User("user2@email.com","user2","secret2","user","salt2"),
+            new User("user3@email.com","user3","secret3","user","salt3")
         };
 
         public async Task<User> GetAsync(Guid id)

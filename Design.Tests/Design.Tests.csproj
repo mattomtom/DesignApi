@@ -1,23 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Design.Tests</AssemblyName>
-    <PackageId>Design.Tests</PackageId>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
-
   <ItemGroup>
-    <ProjectReference Include="../../src/Design.Core/Design.Core.csproj" />
-    <ProjectReference Include="../../src/Design.Infrastructure/Design.Infrastructure.csproj" />
+    <ProjectReference Include="../Design.Core/Design.Core.csproj" />
+    <ProjectReference Include="../Design.Infrastructure/Design.Infrastructure.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+  <!-- <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-*" />
     <PackageReference Include="xunit" Version="2.2.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
+    <PackageReference Include="System.ComponentModel.TypeConverter" Version="4.3.*" />
+    <PackageReference Include="FluentAssertions" Version="4.19.0" />
+    <PackageReference Include="Moq" Version="4.7.8" />
+    <PackageReference Include="dotnet-test-nunit" Version="3.4.0-*" />
+  </ItemGroup> -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.01" />
+    <PackageReference Include="xunit" Version="2.2.0" />
+    <!-- <PackageReference Include="Microsoft.NET.TestHost" Version="1.1.1" /> -->
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
     <PackageReference Include="FluentAssertions" Version="4.19.0" />
     <PackageReference Include="Moq" Version="4.7.8" />
-    <PackageReference Include="dotnet-test-nunit" Version="3.4.0-beta-3" />
+    <Content Include="Services\UserServicesTests.cs" />
   </ItemGroup>
-
 </Project>

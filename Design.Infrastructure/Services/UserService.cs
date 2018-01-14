@@ -24,7 +24,7 @@ namespace Design.Infrastructure.Services
             return _mapper.Map<User,UserDto>(user);
         }
 
-        public async Task RegisterAsync(string email,string username, string password)
+        public async Task RegisterAsync(Guid id, string email, string username, string password, string role)
         {
             var user = await _userRepository.GetAsync(email);
             if (user != null)
@@ -33,7 +33,7 @@ namespace Design.Infrastructure.Services
             }
 
             var salt = Guid.NewGuid().ToString("N");
-            user = new User(email, username, password, salt);
+            user = new User(email, username, password, role, salt);
             await _userRepository.AddAsync(user);
         }
     }

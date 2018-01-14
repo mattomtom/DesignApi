@@ -1,4 +1,7 @@
 using System;
+using System.Threading.Tasks;
+using AutoMapper;
+using Design.Core.Domain;
 using Design.Core.Repositories;
 using Design.Infrastructure.DTO;
 
@@ -7,20 +10,18 @@ namespace Design.Infrastructure.Services
     public class WalkerService : IWalkerService
     {
         private readonly IWalkerRepository _walkerRepository;
-
-        public WalkerService(IWalkerRepository walkerRepository)
+        private readonly IMapper _mapper;
+        public WalkerService(IWalkerRepository walkerRepository, IMapper mapper)
         {
             _walkerRepository = walkerRepository;
+            _mapper = mapper;
         }
 
-        public WalkerDto Get(Guid userId)
+        public async Task<WalkerDto> GetAsync(Guid userId)
         {
-            var walker = _walkerRepository.Get(userId);
+            var walker = await _walkerRepository.GetAsync(userId);
 
-            return new WalkerDto
-            {
-                //TODO
-            };
+            return _mapper.Map<Walker,WalkerDto>(walker);
         }
     }
 }

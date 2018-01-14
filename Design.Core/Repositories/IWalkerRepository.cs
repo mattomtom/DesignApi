@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Design.Core.Domain;
 
 namespace Design.Core.Repositories
 {
     public interface IWalkerRepository
     {
-         Walker Get(Guid userId);
-         IEnumerable<Walker> GetAll();
-         void Add(Walker walker);
-         void Update(Walker walker);
+         Task<Walker> GetAsync(Guid userId);
+         Task<IEnumerable<Walker>> GetAllAsync();
+         Task AddAsync(Walker walker);
+         Task UpdateAsync(Walker walker);
     }
 }

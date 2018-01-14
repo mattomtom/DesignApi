@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Design.Core.Domain;
 using Design.Core.Repositories;
 
@@ -10,20 +11,22 @@ namespace Design.Infrastructure.Repositories
     {
         private static ISet<Walker> _walker = new HashSet<Walker>();
 
-        public void Add(Walker walker)
+        public async Task AddAsync(Walker walker)
         {
             _walker.Add(walker);
+            await Task.CompletedTask;
         }
 
-        public Walker Get(Guid userId) =>
-            _walker.Single(x => x.UserId == userId);
+        public async Task<Walker> GetAsync(Guid userId) =>
+            await Task.FromResult(_walker.SingleOrDefault(x => x.UserId == userId));
 
-        public IEnumerable<Walker> GetAll() =>
-            _walker;
+        public async Task<IEnumerable<Walker>> GetAllAsync() =>
+            await Task.FromResult(_walker);
 
-        public void Update(Walker walker)
+        public async Task UpdateAsync(Walker walker)
         {
             //TODO
+            await Task.CompletedTask;
         }
     }
 }

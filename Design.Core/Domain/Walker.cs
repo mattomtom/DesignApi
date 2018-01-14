@@ -9,6 +9,7 @@ namespace Design.Core.Domain
         public Vehicle Vehicle { get; protected set; }
         public IEnumerable<Route> Routes { get; protected set; }
         public IEnumerable<SingleTrip> SingleRoutes { get; protected set; }
+        public DateTime UpdatedAt { get; private set; }
     
         protected Walker()
         {
