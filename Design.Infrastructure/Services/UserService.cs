@@ -33,7 +33,7 @@ namespace Design.Infrastructure.Services
             }
 
             var salt = Guid.NewGuid().ToString("N");
-            user = new User(email, username, password, role, salt);
+            user = new User(Guid.NewGuid(),email, username, password, role, salt);
             await _userRepository.AddAsync(user);
         }
     }
