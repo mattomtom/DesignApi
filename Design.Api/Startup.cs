@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Design.Core.Repositories;
+using Design.Infrastructure.IoC;
 using Design.Infrastructure.IoC.Modules;
 using Design.Infrastructure.Mappers;
 using Design.Infrastructure.Repositories;
@@ -23,7 +24,7 @@ namespace Design.Api
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-        }
+        } 
 
         public IConfiguration Configuration { get; }
 
@@ -32,14 +33,11 @@ namespace Design.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IUserRepository, InMemoryUserRepository>();
-            services.AddSingleton(AutoMapperConfig.Initialize());
             services.AddMvc();
 
             var builder = new ContainerBuilder();
             builder.Populate(services);
-            builder.RegisterModule<CommandModule>();
+            builder.RegisterModule(new ContainerModule(Configuration));
             ApplicationContainer = builder.Build();
 
             return new AutofacServiceProvider(ApplicationContainer);
@@ -56,5 +54,5 @@ namespace Design.Api
             app.UseMvc();
             applicationLifetime.ApplicationStopped.Register(() => ApplicationContainer.Dispose());
         }
-    }    
+    }
 }

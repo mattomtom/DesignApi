@@ -5,7 +5,7 @@ using Design.Core.Domain;
 
 namespace Design.Core.Repositories
 {
-    public interface IWalkerRepository
+    public interface IWalkerRepository : IRepository
     {
          Task<Walker> GetAsync(Guid userId);
          Task<IEnumerable<Walker>> GetAllAsync();

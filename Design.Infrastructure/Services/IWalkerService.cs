@@ -4,7 +4,7 @@ using Design.Infrastructure.DTO;
 
 namespace Design.Infrastructure.Services
 {
-    public interface IWalkerService
+    public interface IWalkerService : IService
     {
         Task<WalkerDto> GetAsync(Guid userId);
     }
