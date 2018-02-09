@@ -1,15 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>Design.Infrastructure</AssemblyName>
     <PackageId>Design.Infrastructure</PackageId>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="../Design.Core/Design.Core.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.5.0" />
     <PackageReference Include="AutoMapper" Version="6.2.2" />
@@ -17,5 +15,4 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.01" />
   </ItemGroup>
-  
 </Project>

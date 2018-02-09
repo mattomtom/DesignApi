@@ -6,6 +6,7 @@ using Design.Infrastructure.Commands;
 using Design.Infrastructure.Commands.Users;
 using Design.Infrastructure.DTO;
 using Design.Infrastructure.Services;
+using Design.Infrastructure.Settings;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Design.Api.Controllers
@@ -16,7 +17,8 @@ namespace Design.Api.Controllers
 
         
         public UsersController(IUserService userService,
-             ICommandDispatcher commandDispatcher) : base(commandDispatcher)
+             ICommandDispatcher commandDispatcher,
+             GeneralSettings settings) : base(commandDispatcher)
         {
             _userService = userService;
         }
