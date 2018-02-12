@@ -8,5 +8,6 @@ namespace Design.Infrastructure.Services
     {
         Task<UserDto> GetAsync(string email);
         Task RegisterAsync(Guid userId, string email,string username, string password, string role);
+        Task LoginAsync(string email, string password);
     }
 }

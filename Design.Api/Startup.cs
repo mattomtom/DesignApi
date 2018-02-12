@@ -10,6 +10,7 @@ using Design.Infrastructure.IoC.Modules;
 using Design.Infrastructure.Mappers;
 using Design.Infrastructure.Repositories;
 using Design.Infrastructure.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -46,11 +47,14 @@ namespace Design.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime applicationLifetime)
         {
+            //TODO loggerFactory
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
+            app.
+            
             app.UseMvc();
             applicationLifetime.ApplicationStopped.Register(() => ApplicationContainer.Dispose());
         }
